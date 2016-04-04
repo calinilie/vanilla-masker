@@ -5,3 +5,4 @@ _SpecRunner.html
 .grunt
 bower_components
 npm-debug.log
+*jquery*
