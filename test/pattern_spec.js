@@ -122,4 +122,10 @@ describe("VanillaMasker.toPattern", function() {
 		})).to.equal('calin-xx90');
 	});
 
+	it('returns cal-in_il when pattern is AAA-AA_AA', function() {
+		expect(VMasker.toPattern('calinil', {
+			pattern: 'AAA-AA_AA'
+		})).to.equal('cal-in_il');
+	})
+
 });
