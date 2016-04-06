@@ -4,10 +4,9 @@
   "description": "VanillaMasker is a pure javascript input mask.",
   "main": "lib/vanilla-masker.js",
   "scripts": {
-    "start": "echo \"NOT implemented !!\"",
     "build": "webpack -d --display-modules",
     "watch": "webpack --progress --colors --watch",
-    "dev": "webpack-dev-server --progress --colors",
+    "build-prod": "webpack -p -d",
     "test": "mocha",
     "start-tests": "mocha -w"
   },

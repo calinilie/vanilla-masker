@@ -17,6 +17,9 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new webpack.OldWatchingPlugin()
+		new webpack.OldWatchingPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			comments: false
+		}),
 	],
 }
