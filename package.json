@@ -5,7 +5,9 @@
   "main": "lib/vanilla-masker.js",
   "scripts": {
     "start": "echo \"NOT implemented !!\"",
-    "build": "echo \"NOT implemented !!\"",
+    "build": "webpack -d --display-modules",
+    "watch": "webpack --progress --colors --watch",
+    "dev": "webpack-dev-server --progress --colors",
     "test": "mocha",
     "start-tests": "mocha -w"
   },
@@ -24,6 +26,12 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "ismobilejs": "^0.4.0",
+    "mocha": "^2.4.5",
+    "webpack": "^1.12.14",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0"
   }
 }
