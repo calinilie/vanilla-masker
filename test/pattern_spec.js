@@ -1,5 +1,4 @@
 const VMasker = require('../src/vanilla-masker');
-const expect = require('chai').expect;
 
 describe("VanillaMasker.maskPattern", function() {
 
