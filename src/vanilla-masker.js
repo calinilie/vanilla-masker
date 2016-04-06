@@ -34,26 +34,35 @@ VanillaMasker.prototype.unbindElementToMask = function() {
 	}
 };
 
-VanillaMasker.prototype.bindElementToMask = function(maskFunction) {
+VanillaMasker.prototype.bindElementToMask = function() {
 	for (var i = 0, len = this.elements.length; i < len; i++) {
-		this.elements[i].onkeypress = onType(maskFunction).bind(this)
+		if (isMobile.any) {
+			this.elements[i].onkeyup = onkeyup.bind(this);
+		} else {
+			this.elements[i].onkeypress = onkeypress.bind(this)
+		}
 		if (this.elements[i].value.length) {
-			this.elements[i].value = VMasker[maskFunction](this.elements[i].value, this.opts);
+			this.elements[i].value = VMasker.toPattern(this.elements[i].value, this.opts);
 		}
 	}
 };
 
-function onType(maskFunction) {
-	return function(event) {
-		event = event || window.event;
-		var inputElement = event.target || event.srcElement;
+function onkeyup(event) {
+	event = event || window.event;
+	var inputElement = event.target || event.srcElement;
+	inputElement.value = VMasker.toPattern(inputElement.value + '', this.opts);
 
-		var inputValue = inputElement.value ? inputElement.value + '' : '';
-		inputValue = clearSelection(inputElement, inputValue);
+}
 
-		inputElement.value = VMasker[maskFunction](inputValue + String.fromCharCode(event.keyCode), this.opts);
-		event.preventDefault();
-	}
+function onkeypress(event) {
+	event = event || window.event;
+	var inputElement = event.target || event.srcElement;
+
+	var inputValue = inputElement.value ? inputElement.value + '' : '';
+	inputValue = clearSelection(inputElement, inputValue);
+
+	inputElement.value = VMasker.toPattern(inputValue + String.fromCharCode(event.keyCode), this.opts);
+	event.preventDefault();
 }
 
 function clearSelection(element, inputValue) {
@@ -86,7 +95,7 @@ VanillaMasker.prototype.maskPattern = function(pattern) {
 	this.opts = {
 		pattern: pattern
 	};
-	this.bindElementToMask("toPattern");
+	this.bindElementToMask();
 };
 
 VanillaMasker.prototype.unMask = function() {
